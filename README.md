@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Customize configuration
+See [Link web page](https://prueba-tecnica-ivan.netlify.app/).
