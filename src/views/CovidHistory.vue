@@ -102,17 +102,18 @@ export default {
     methods: {
       async getData() {    
         this.isLoading = true;
-        const res = await Api.getDataCovid(this.country);
-        this.countrys = await Api.getCountrys();
+        const res = await Api.getDataCovid();
+        this.countrys = [];
+        for (const [key, value] of Object.entries(res)) {
+            this.countrys.push({key, value: value.location});
+        }
+        this.data = res[this.country];
         this.isLoading = false;
-
-        console.log(res);
-
-        this.data = res;
-        this.dataCharts.cases = [['Nuevos casos', res.new_cases], ['Nuevos casos por millon', res.new_cases_per_million]];
-        this.dataCharts.deaths = [['Nuevas muertes', res.new_deaths], ['Nuevas muertes por millon', res.new_deaths_per_million]];
-        this.dataCharts.totalCasesAndDeaths = [['Total casos', res.total_cases], ['Total casos por millon', res.total_cases_per_million], ['Total muertes', res.total_deaths], ['Total muertes por millon', res.total_deaths_per_million]];
-        this.dataCharts.tests = [['Pruebas recientes', res.new_tests], ['Total de pruebas aplicadas', res.total_tests]];
+        
+        this.dataCharts.cases = [['Nuevos casos', this.data.new_cases], ['Nuevos casos por millon', this.data.new_cases_per_million]];
+        this.dataCharts.deaths = [['Nuevas muertes', this.data.new_deaths], ['Nuevas muertes por millon', this.data.new_deaths_per_million]];
+        this.dataCharts.totalCasesAndDeaths = [['Total casos', this.data.total_cases], ['Total casos por millon', this.data.total_cases_per_million], ['Total muertes', this.data.total_deaths], ['Total muertes por millon', this.data.total_deaths_per_million]];
+        this.dataCharts.tests = [['Pruebas recientes', this.data.new_tests], ['Total de pruebas aplicadas', this.data.total_tests]];
       }, 
 
       changeCountry() {

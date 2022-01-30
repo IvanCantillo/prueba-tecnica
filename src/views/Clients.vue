@@ -27,7 +27,7 @@
                   </thead>    
                   <tbody v-if="clients.length > 0">
                     <template v-for="client in clients"> 
-                      <tr class="hover" :key="client.id" @click="client.moreInfo = !client.moreInfo">
+                      <tr class="hover" :key="client.id" @click="toggleMoreInfo(client)">
                           <th>
                               <button                                             
                                   class="btn btn-sm text-white btn-warning rounded-circle font-weight-bold py-1"
@@ -116,15 +116,13 @@ export default {
             name: '',
             lastName: '',
             email: '',
-
             phone: '',
             country: '',
             city: '',
-            
             deteOfBirth: '',
             gender: '',
             children: false,
-            numberOfChildren: 0,            
+            numberOfChildren: 0,       
         },
         dataClient: {}
       }
@@ -172,6 +170,10 @@ export default {
             }else {
                 this.editClient(client);
             }
+        },
+        toggleMoreInfo(client) {
+            client.moreInfo = !client.moreInfo;
+            localStorage.setItem('clients', JSON.stringify(this.clients)); 
         }
     },
 }
