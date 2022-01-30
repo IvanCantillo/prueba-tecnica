@@ -190,18 +190,7 @@ export default {
         },
         createOrSaveClient() {
             if(!this.validateInputs()){
-                this.$emit('create-or-save-client', {
-                    name: this.client.name,
-                    lastName: this.client.lastName,
-                    email: this.client.email,
-                    phone: this.client.phone,
-                    country: this.client.country,
-                    city: this.client.city,
-                    deteOfBirth: this.client.deteOfBirth,
-                    gender: this.client.gender,
-                    children: this.client.children,
-                    numberOfChildren: this.client.numberOfChildren
-                }, this.isAddClient );
+                this.$emit('create-or-save-client', this.client, this.isAddClient );
                 this.$refs.closeModal.click();
             }
         }
