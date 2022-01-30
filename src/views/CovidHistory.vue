@@ -57,12 +57,20 @@
         </div>
       </div>   
       <div class="row">
-        <div class="col-12">
-          <h5> - Pruebas aplicadas: </h5>
-        </div>
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl- my-4">
+          <h5> - Pruebas realizadas: </h5>
           <bar-chart 
             :data="dataCharts.tests"
+            :download="{background: '#fff'}"
+            :messages="{empty: 'Sin datos'}"
+            :colors="['#6236FF']"
+          >
+          </bar-chart>
+        </div>
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl- my-4">
+          <h5> - Vacunas aplicadas: </h5>
+          <bar-chart 
+            :data="dataCharts.vaccionations"
             :download="{background: '#fff'}"
             :messages="{empty: 'Sin datos'}"
             :colors="['#6236FF']"
@@ -110,10 +118,11 @@ export default {
         this.data = res[this.country];
         this.isLoading = false;
         
-        this.dataCharts.cases = [['Nuevos casos', this.data.new_cases], ['Nuevos casos por millon', this.data.new_cases_per_million]];
-        this.dataCharts.deaths = [['Nuevas muertes', this.data.new_deaths], ['Nuevas muertes por millon', this.data.new_deaths_per_million]];
-        this.dataCharts.totalCasesAndDeaths = [['Total casos', this.data.total_cases], ['Total casos por millon', this.data.total_cases_per_million], ['Total muertes', this.data.total_deaths], ['Total muertes por millon', this.data.total_deaths_per_million]];
+        this.dataCharts.cases = [['Nuevos casos', this.data.new_cases], ['Nuevos casos por millon de personas', this.data.new_cases_per_million]];
+        this.dataCharts.deaths = [['Muertes recientes', this.data.new_deaths], ['Muertes recientes por millon de personas', this.data.new_deaths_per_million]];
+        this.dataCharts.totalCasesAndDeaths = [['Total casos', this.data.total_cases], ['Total casos por millon de personas', this.data.total_cases_per_million], ['Total muertes', this.data.total_deaths], ['Total muertes por millon de personas', this.data.total_deaths_per_million]];
         this.dataCharts.tests = [['Pruebas recientes', this.data.new_tests], ['Total de pruebas aplicadas', this.data.total_tests]];
+        this.dataCharts.vaccionations = [['Personas vacunadas', this.data.people_vaccinated], ['Total de vacunas aplicadas', this.data.total_vaccinations]];
       }, 
 
       changeCountry() {

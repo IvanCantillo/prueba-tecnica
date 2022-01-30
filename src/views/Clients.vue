@@ -53,7 +53,7 @@
                               <strong>País:</strong> {{ client.country }}
                           </td>
                           <td colspan="2" class="text-left">
-                              <strong>Género:</strong> {{ client.gender }}
+                              <strong>Género:</strong> {{ client.gender != '' ? client.gender : 'No especificado' }}
                           </td>
                         </tr>   
                         <tr :key="client.id  + '-3'">
