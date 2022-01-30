@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Link web page
-See [link](https://prueba-tecnica-ivan.netlify.app/).
+See [link](https://nous-marketing.netlify.app/).
